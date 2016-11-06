@@ -4,7 +4,6 @@
 
 #ifndef SPTR_HPP
 #define SPTR_HPP
-
 template<typename T>
 class shared_ptr {
 public:
@@ -27,7 +26,6 @@ private:
 	T * ptr_;
 	size_t * count_;
 };
-
 template <class T, class... Args>
 shared_ptr<T> make_shared(Args&& ...args);
 
