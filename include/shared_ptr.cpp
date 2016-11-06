@@ -64,7 +64,15 @@ shared_ptr<T>::~shared_ptr()
 template<typename T> 
 auto shared_ptr<T>::reset() noexcept -> void 
 {
-	~shared_ptr();
+	if (count_) 
+	{
+		if (*count_ == 1) 
+		{
+			delete count_;
+			delete ptr_;
+		}
+		else (*count_)--;
+	}
 	ptr_ = nullptr;
 	count_ = nullptr;
 }
