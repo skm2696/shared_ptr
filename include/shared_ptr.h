@@ -19,8 +19,8 @@ public:
 	auto get() const noexcept->T *; 
 	auto use_count() const noexcept->size_t; 
 	auto unique() const noexcept -> bool; 
-	auto operator*() const;
-	auto operator->() const;
+	auto operator*() const -> T&;
+	auto operator->() const -> T*;
 	explicit operator bool() const noexcept; 
 private:
 	T * ptr_;
