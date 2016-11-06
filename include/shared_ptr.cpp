@@ -12,7 +12,7 @@ shared_ptr<T>::shared_ptr(T * ptr) : ptr_(ptr), count_(new size_t(1))
 { }
 
 template<typename T> 
-shared_ptr<T>::shared_ptr(const shared_ptr & r) : ptr_(r.ptr_), counter_(r.count_) 
+shared_ptr<T>::shared_ptr(const shared_ptr & r) : ptr_(r.ptr_), count_(r.count_) 
 {
 	if (r.count_) 
 	{
@@ -95,7 +95,7 @@ auto shared_ptr<T>::unique() const noexcept -> bool
 }
 
 template<typename T> 
-auto shared_ptr<T>::operator*() const -> T & 
+auto shared_ptr<T>::operator*() const -> T& 
 {
 	if (ptr_ == nullptr) 
 	{
@@ -105,7 +105,7 @@ auto shared_ptr<T>::operator*() const -> T &
 }
 
 template<typename T> 
-auto shared_ptr<T>::operator->() const -> T * 
+auto shared_ptr<T>::operator->() const -> T* 
 {
 	if (ptr_ == nullptr) 
 	{
