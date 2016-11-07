@@ -64,7 +64,8 @@ shared_ptr<T>::~shared_ptr()
 template<typename T> 
 auto shared_ptr<T>::reset() noexcept -> void 
 {
-	swap(shared_ptr());
+	shared_ptr temp;
+        swap(temp);
 }
 
 template<typename T> 
