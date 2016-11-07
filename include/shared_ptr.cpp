@@ -16,12 +16,12 @@ shared_ptr<T>::shared_ptr(const shared_ptr & r) : ptr_(r.ptr_), count_(r.count_)
 {
 	if (r.count_) 
 	{
-		(*r.count_)++;
+		++(*r.count_);
 	}
 }
 
 template<typename T> 
-shared_ptr<T>::shared_ptr(shared_ptr && r) : ptr_(std::move(r.ptr_)), count_(std::move(r.count_)) 
+shared_ptr<T>::shared_ptr(shared_ptr && r) : ptr_(r.ptr_), count_(r.count_) 
 {
 	r.ptr_ = nullptr;
 	r.count_ = nullptr;
@@ -57,24 +57,14 @@ shared_ptr<T>::~shared_ptr()
 			delete count_;
 			delete ptr_;
 		}
-		else (*count_)--;
+		else --(*count_);
 	}
 }
 
 template<typename T> 
 auto shared_ptr<T>::reset() noexcept -> void 
 {
-	if (count_) 
-	{
-		if (*count_ == 1) 
-		{
-			delete count_;
-			delete ptr_;
-		}
-		else (*count_)--;
-	}
-	ptr_ = nullptr;
-	count_ = nullptr;
+	swap(shared_ptr());
 }
 
 template<typename T> 
